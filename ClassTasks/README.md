@@ -56,7 +56,7 @@ egg", "steak", "hamburger", "cinnamon roll"]
 
 ```
 
-[click to see the solution]()
+[click to see the solution](https://github.com/Gayane25/OOP-Classes/blob/master/ClassTasks/CoffeeShop.js)
 
 #### Shiritori
 
@@ -85,13 +85,14 @@ Methods:
   - restart: a method that sets the words array to an empty one [] and sets the game_over boolean to false. It should return "game restarted".
 
 Examples:
+
 ```javascript
 myShiritori = new Shiritory();
 
-myShiritori.play("apple"); // ["apple"]
-myShiritori.play("ear"); // ["apple", "ear"]
-myShiritori.play("rhino"); // ["apple", "ear", "rhino"]
-myShiritori.play("corn"); // "game over"
+myShiritori.play('apple'); // ["apple"]
+myShiritori.play('ear'); // ["apple", "ear"]
+myShiritori.play('rhino'); // ["apple", "ear", "rhino"]
+myShiritori.play('corn'); // "game over"
 // Corn does not start with an "o".
 
 myShiritori.words; // ["apple", "ear", "rhino"]
@@ -102,10 +103,11 @@ myShiritori.words; // []
 
 // Words array should be set back to empty.
 
-myShiritori.play("hostess"); // ["hostess"]
-myShiritori.play("stash"); // ["hostess", "stash"]
-myShiritori.play("hostess"); // "game over"
+myShiritori.play('hostess'); // ["hostess"]
+myShiritori.play('stash'); // ["hostess", "stash"]
+myShiritori.play('hostess'); // "game over"
 ```
+
 **IMPORTANT** Words cannot have already been said.
 
 - The play method should not add an invalid word to the words array.
