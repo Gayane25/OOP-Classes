@@ -1,12 +1,11 @@
-"use strict";
+'use strict';
 
 class Library {}
 
-
 class Book {
   constructor(title, author) {
-    this._title = title
-    this._author = author
+    this._title = title;
+    this._author = author;
   }
   get title() {
     return this._title;
@@ -18,7 +17,7 @@ class Book {
     this._title = onlystr;
   }
   get author() {
-    return this._author
+    return this._author;
   }
 
   set author(onlystr) {
@@ -29,11 +28,11 @@ class Book {
   }
 
   toString() {
-    return `${this._title} of ${this._author}`
+    return `${this._title} of ${this._author}`;
   }
 
   isTheSameBook(book) {
-    if ((book.title === this._title) && (book.author === this._author)) {
+    if (book.title === this._title && book.author === this._author) {
       return true;
     }
   }
@@ -41,12 +40,12 @@ class Book {
 
 class LibraryBookBase extends Book {
   constructor(title, author, bookId) {
-    super(title, author)
-    this._bookId = bookId
+    super(title, author);
+    this._bookId = bookId;
   }
 
   get bookId() {
-    return this._bookId
+    return this._bookId;
   }
 
   set bookId(onlyNum) {
@@ -56,18 +55,18 @@ class LibraryBookBase extends Book {
     this._bookId = onlyNum;
   }
   toString() {
-    return `${this._title} ${this._author} ${this._bookId}`
+    return `${this._title} ${this._author} ${this._bookId}`;
   }
 }
 
 class LibraryBook extends Book {
   constructor(title, author, bookId, quantity) {
-    super(title, author)
-    this._bookId = bookId
-    this._quantity = quantity
+    super(title, author);
+    this._bookId = bookId;
+    this._quantity = quantity;
   }
   get bookId() {
-    return this._bookId
+    return this._bookId;
   }
   set bookId(onlyNum) {
     if (typeof onlyNum !== 'number') {
@@ -77,7 +76,7 @@ class LibraryBook extends Book {
   }
 
   get quantity() {
-    return this._quantity
+    return this._quantity;
   }
   set quantity(onlyNum) {
     if (typeof onlyNum !== 'number') {
@@ -87,23 +86,23 @@ class LibraryBook extends Book {
   }
 
   toString() {
-    return `${this._title}, ${this._author}, ${this._bookId}, ${this._quantity}`
+    return `${this._title}, ${this._author}, ${this._bookId}, ${this._quantity}`;
   }
 
   increaseQuantityBy(amount) {
-    if (typeof amount !== "number") {
-      throw new Error("only number");
+    if (typeof amount !== 'number') {
+      throw new Error('only number');
     }
     this._quantity += amount;
     return this._quantity;
   }
 
   decreaseQuantityBy(amount) {
-    if (typeof amount !== "number") {
-      throw new Error("only number");
+    if (typeof amount !== 'number') {
+      throw new Error('only number');
     }
     if (amount > this._quantity) {
-      throw new Error("amount must be less than quantity");
+      throw new Error('amount must be less than quantity');
     }
     this._quantity -= amount;
     return this._quantity;
@@ -112,13 +111,13 @@ class LibraryBook extends Book {
 
 class ReaderBook extends Book {
   constructor(title, author, bookId, expirationDate, isReturned) {
-    super(title, author)
-    this._bookId = bookId
-    this._expirationDate = expirationDate
-    this._isReturned = isReturned
+    super(title, author);
+    this._bookId = bookId;
+    this._expirationDate = expirationDate;
+    this._isReturned = isReturned;
   }
   get bookId() {
-    return this._bookId
+    return this._bookId;
   }
   set bookId(onlyNum) {
     if (typeof onlyNum !== 'number') {
@@ -127,7 +126,7 @@ class ReaderBook extends Book {
     this._bookId = onlyNum;
   }
   get expirationDate() {
-    return this._expirationDate
+    return this._expirationDate;
   }
   set expirationDate(onlystr) {
     if (typeof onlystr !== 'string') {
@@ -136,65 +135,65 @@ class ReaderBook extends Book {
     this._expirationDate = onlystr;
   }
   get isReturned() {
-    return this._isReturned
+    return this._isReturned;
   }
   set isReturned(checking) {
-    if ((this.isReturned === true) || (this.isReturned === "returned")) {
-      this._isReturned = true
-      return this._isReturned
+    if (this.isReturned === true || this.isReturned === 'returned') {
+      this._isReturned = true;
+      return this._isReturned;
     }
-    if ((this.isReturned === false) || (this.isReturned === "isNotReturned")) {
-      this._isReturned = false
-      return this._isReturned
+    if (this.isReturned === false || this.isReturned === 'isNotReturned') {
+      this._isReturned = false;
+      return this._isReturned;
     }
   }
   toString() {
-    return `${this._title}, ${this._author}, ${this._bookId}, ${this._expirationDate}, ${this._isReturned}`
+    return `${this._title}, ${this._author}, ${this._bookId}, ${this._expirationDate}, ${this._isReturned}`;
   }
 }
 
 class Reader {
   static id = 0;
   constructor(firstName, lastName, books) {
-    this._id = ++Reader.id
-    this._firstName = firstName
-    this._lastName = lastName
-    this._books = books
+    this._id = ++Reader.id;
+    this._firstName = firstName;
+    this._lastName = lastName;
+    this._books = books;
   }
   get firstName() {
-    return this._firstName
+    return this._firstName;
   }
   set firstName(strOnly) {
-    if (typeof strOnly !== "string") {
-      throw new Error("this field must be string")
+    if (typeof strOnly !== 'string') {
+      throw new Error('this field must be string');
     }
-    this._firstName = strOnly
+    this._firstName = strOnly;
   }
   get lastName() {
-    return this._lastName
+    return this._lastName;
   }
   set lastName(strOnly) {
-    if (typeof strOnly !== "string") {
-      throw new Error("this field must be string")
+    if (typeof strOnly !== 'string') {
+      throw new Error('this field must be string');
     }
-    this._lastName = strOnly
+    this._lastName = strOnly;
   }
   get books() {
-    return this._books
+    return this._books;
   }
   set books(checkArr) {
     if (!Array.isArray(checkArr)) {
-      throw new Error("this field type must be array")
+      throw new Error('this field type must be array');
     }
     this._books = checkArr;
   }
   toString() {
-    return `${this._firstName}, ${this._lastName}, ${this._books}`
+    return `${this._firstName}, ${this._lastName}, ${this._books}`;
   }
 
   borrowBook(book, library) {
     if (library.includes(book) && book instanceof ReaderBook) {
       this._books.push(book);
     }
-
   }
+}
