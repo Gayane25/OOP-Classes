@@ -8,25 +8,11 @@ class Book {
   get title() {
     return this._title;
   }
-  set title(onlystr) {
-    if (typeof onlystr !== 'string') {
-      throw new Error('this field must be String');
-    }
-    this._title = onlystr;
-  }
   get author() {
     return this._author;
   }
-
-  set author(onlystr) {
-    if (typeof onlystr !== 'string') {
-      throw new Error('this field must be String');
-    }
-    this._author = onlystr;
-  }
-
   toString() {
-    return `${this._title} of ${this._author}`;
+    return `${this.title} by ${this.author}`;
   }
 
   isTheSameBook(book) {
@@ -40,32 +26,17 @@ class Book {
     );
   }
 }
-
 class LibraryBookBase extends Book {
+  constructor(title, author) {
+    super(title, author);
+  }
+}
+class LibraryBook extends Book {
   static id = 0;
   constructor(title, author) {
     super(title, author);
-    this._bookId = ++LibraryBookBase.id;
-  }
-  toString() {
-    return `${this._title} ${this._author}`;
-  }
-}
-
-class LibraryBook extends Book {
-  constructor(title, author, bookId, quantity) {
-    super(title, author);
-    this._bookId = bookId;
+    this._bookId = ++LibraryBook.id;
     this._quantity = quantity;
-  }
-  get bookId() {
-    return this._bookId;
-  }
-  set bookId(onlyNum) {
-    if (typeof onlyNum !== 'number') {
-      throw new Error('this field must be only number');
-    }
-    this._bookId = onlyNum;
   }
 
   get quantity() {
