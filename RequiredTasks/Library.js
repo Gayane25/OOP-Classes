@@ -1,7 +1,5 @@
 'use strict';
 
-class Library {}
-
 class Book {
   constructor(title, author) {
     this._title = title;
@@ -32,9 +30,14 @@ class Book {
   }
 
   isTheSameBook(book) {
-    if (book.title === this._title && book.author === this._author) {
+    /*if (book.title === this._title && book.author === this._author) {
       return true;
-    }
+    }*/
+    return (
+      book instanceof Book &&
+      book.name === this.name &&
+      book.author === this.author
+    );
   }
 }
 
@@ -197,3 +200,5 @@ class Reader {
     }
   }
 }
+
+class Library {}
