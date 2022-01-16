@@ -120,17 +120,49 @@ class Library {
   static books = [];
   static readers = [];
 
-  static getLibBooks(book) {
-    if (book instanceof LibraryBook) {
-      Library.books.push(book);
-      return Library.books;
-    }
-    return Library.books;
-  }
   static getAllReaders(reader) {
     if (reader instanceof Reader) {
       return Library.readers.push(reader);
     }
     return Library.readers;
+  }
+  static doHaveBook(book) {
+    if (
+      book instanceof LibraryBook &&
+      /*book.title === LibraryBook.title &&
+      book.author === LibraryBook.author &&*/
+      Library.books.includes(book)
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  static addBook(book) {
+    if (book instanceof LibraryBook && Library.books.includes(book)) {
+      book.quantity += 1;
+      return Library.books;
+    } else {
+      Library.books.push(book);
+    }
+    return Library.books;
+  }
+  static addBooks(newbook) {
+    if (newbook instanceof LibraryBook && Library.books.includes(newbook)) {
+      newbook.quantity += 1;
+      return Library.books;
+    } else {
+      Library.books.push(newbook);
+    }
+    return Library.books;
+  }
+  static checkReaderId(readeId) {
+    for (let i of Library.readers) {
+      if (Library.readers[i].readerId === readeId) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
 }
