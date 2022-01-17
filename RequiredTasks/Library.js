@@ -70,7 +70,7 @@ class ReaderBook extends LibraryBookBase {
     this._expirationDate = expirationDate;
   }
   get expirationDate() {
-    return this._isReturned;
+    return this._expirationDate;
   }
   set expirationDate(val) {
     if (Object.prototype.toString.call(val) === '[object Date]') {
@@ -88,81 +88,95 @@ class ReaderBook extends LibraryBookBase {
 
 class Reader {
   static id = 0;
-  static books = [];
-  constructor(firstName, lastName) {
+  constructor(firstName, lastName, books) {
     this._firstName = firstName;
     this._lastName = lastName;
     this.readerId = ++Reader.id;
-    this._books = Reader.books;
+    this._books = books;
   }
-  //this._books
   get firstName() {
     return this._firstName;
   }
   get lastName() {
     return this._lastName;
   }
-  static getReadbooks(book) {
-    if (book instanceof ReaderBook) {
-      return Reader.books.push(book);
-    }
-    return Reader.books;
-  }
-
-  //borrowBook(){}
 }
+// let readerBook1 = new ReaderBook('Harry Potter', 'Rawling', '22-05-2022');
+// let readerBook2 = new ReaderBook('Harry', 'Rawling', ' 22-05-2022');
+// let readerBooks = [readerBook1, readerBook2];
+// let reader1 = new Reader('Gayane', 'Babayan', readerBooks);
+// console.log(reader1);
 
 class Library {
-  constructor() {
-    this._books = Library.books;
-    this._reader = Library.readers;
+  constructor(books, readers) {
+    // array of Library books // array of Readers
+    this._books = books;
+    this._readers = readers;
   }
-  static books = [];
-  static readers = [];
-
-  static getAllReaders(reader) {
-    if (reader instanceof Reader) {
-      return Library.readers.push(reader);
-    }
-    return Library.readers;
-  }
-  static doHaveBook(book) {
-    if (
-      book instanceof LibraryBook &&
-      /*book.title === LibraryBook.title &&
-      book.author === LibraryBook.author &&*/
-      Library.books.includes(book)
-    ) {
-      return true;
+  doHaveBook(requestedBook) {
+    if (requestedBook instanceof LibraryBook) {
+      return this._books.some(el => {
+        return (
+          el.title === requestedBook.title && el.author === requestedBook.author
+        );
+      });
     } else {
-      return false;
+      return 'Invalid book';
     }
   }
-  static addBook(book) {
-    if (book instanceof LibraryBook && Library.books.includes(book)) {
-      book.quantity += 1;
-      return Library.books;
+  addBook(newBook) {
+    if (newBook instanceof LibraryBook) {
+      newBook.quantity += 1;
+      return this_.books;
     } else {
-      Library.books.push(book);
+      this._books.push(newBook);
     }
-    return Library.books;
   }
-  static addBooks(newbook) {
-    if (newbook instanceof LibraryBook && Library.books.includes(newbook)) {
-      newbook.quantity += 1;
-      return Library.books;
-    } else {
-      Library.books.push(newbook);
+  addBooks(newBooks) {
+    const isValidBooks = newBooks.every(el => el instanceof LibraryBook);
+    if (isValidBooks) {
+      this._books = [...this._books, ...newBooks];
+      return this._books;
     }
-    return Library.books;
+    return this._books;
   }
-  static checkReaderId(readeId) {
-    for (let i of Library.readers) {
-      if (Library.readers[i].readerId === readeId) {
+  checkReaderId(readerId) {
+    this._readers.some(el => {
+      if (el.readerId === readerId) {
         return true;
       } else {
         return false;
       }
-    }
+    });
   }
+
+  // static checkReaderId(readeId) {
+  //   const reead = new Reader();
+  //   for (let i of Library.readers) {
+  //     if (reead.readerId === readeId) {
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+  //   }
+  // }
 }
+
+const Gayane = new Reader('Gayane', 'Babayan');
+const Harut = new Reader('Harut', 'Harutyunyan');
+const Arev = new Reader('Arevik', 'Arzumanian');
+
+const Rawling = new LibraryBook('Harry Potter', 'John Rawling', 1);
+const Markes = new LibraryBook('100 years of Loneliness', 'Garcia Markes', 3);
+const Sartre = new LibraryBook('No Exit', 'Jean Paul Sartre', 4);
+const Joyce = new LibraryBook('ULYSS', 'James Joyce', 3);
+
+const libBooks = [Rawling, Markes, Sartre, Joyce];
+const libReaders = [Gayane, Harut, Arev];
+
+// console.log(libReaders);
+const myLibrary = new Library(libBooks, libReaders);
+console.log(myLibrary.checkReaderId(3));
+
+// console.log(myLibrary);
+// console.log(myLibrary.doHaveBook('100 years of Loneliness', 'Garcia Markes'));
