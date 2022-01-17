@@ -114,3 +114,27 @@ myShiritori.play('hostess'); // "game over"
 - You don't need to worry about capitalization or white spaces for the inputs for the play method. There will only be single inputs for the play method.
 
 [click to see the solution](https://github.com/Gayane25/OOP-Classes/blob/master/ClassTasks/Shiritori.js)
+
+# CustomConsole Class
+
+Create a CustomConsole class with following methods:
+
+- log function that takes user arguments and returns them as a string,
+- history function that takes an optional range as an argument,
+- clearHistory function to remove the history memory.
+
+---
+
+- The log function has no limit of arguments.
+
+```javascript
+const myConsole = new Console('Regular');
+const fancyConsole = new Console('Fancy');
+myConsole.log([0, 1, 2, 3]) // "Regular: [0,1,2,3]"
+myConsole.log({ a:1, b:2 }) // "Fancy: {a:1, b:2}"
+myConsole.log("ok : ", 1, 2, 3) ➞ "ok : 1, 2, 3"
+myConsole.clearHistory() // true
+myConsole.history() // ""
+```
+
+[click to see the solution](https://github.com/Gayane25/OOP-Classes/blob/master/ClassTasks/CustomConsole.js)
